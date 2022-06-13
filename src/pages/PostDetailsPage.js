@@ -4,7 +4,6 @@ import PostRelated from "module/post/PostRelated";
 import PostMeta from "module/post/PostMeta";
 import PostImage from "module/post/PostImage";
 import PostCategory from "module/post/PostCategory";
-import parse from "html-react-parser";
 import PageNotFound from "./PageNotFound";
 import Layout from "components/layout/Layout";
 import AuthorBox from "components/author/AuthorBox";
@@ -126,6 +125,7 @@ const PostDetailsPage = () => {
   if (!slug) return <PageNotFound></PageNotFound>;
   if (!postInfo.title) return null;
   const { user } = postInfo;
+  console.log("PostDetailsPage ~ postInfo", postInfo);
   return (
     <PostDetailsPageStyles>
       <Layout>
@@ -155,9 +155,9 @@ const PostDetailsPage = () => {
           <div className="post-content">
             <div
               className="entry-content"
-              // Prevent XSS Attack recommen from React Docs
+              // Prevent XSS Attack recommend from React Docs
               dangerouslySetInnerHTML={{
-                __html: parse(postInfo.content || ""),
+                __html: postInfo?.content || "",
               }}
             ></div>
             <AuthorBox userId={user.id}></AuthorBox>

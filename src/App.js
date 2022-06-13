@@ -36,6 +36,11 @@ function App() {
         <Suspense>
           <Routes>
             <Route path="/" element={<HomePage></HomePage>}></Route>
+            <Route path="/blog" element={<PageNotFound></PageNotFound>}></Route>
+            <Route
+              path="/contact"
+              element={<PageNotFound></PageNotFound>}
+            ></Route>
             <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
             <Route path="/sign-in" element={<SignInPage></SignInPage>}></Route>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 const PostCategoryStyles = styled.div`
   display: inline-block;

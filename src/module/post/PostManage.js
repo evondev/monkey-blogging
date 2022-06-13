@@ -1,15 +1,12 @@
 import { ActionDelete, ActionEdit, ActionView } from "components/action";
 import { Button } from "components/button";
-import { Dropdown } from "components/dropdown";
 import { LabelStatus } from "components/label";
 import { Table } from "components/table";
-import { useAuth } from "contexts/auth-context";
 import { db } from "firebase-app/firebase-config";
 import {
   collection,
   deleteDoc,
   doc,
-  getDoc,
   getDocs,
   limit,
   onSnapshot,
@@ -22,7 +19,7 @@ import DashboardHeading from "module/dashboard/DashboardHeading";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { postStatus, userRole } from "utils/constants";
+import { postStatus } from "utils/constants";
 
 const POST_PER_PAGE = 10;
 
