@@ -126,7 +126,6 @@ const PostDetailsPage = () => {
   if (!slug) return <PageNotFound></PageNotFound>;
   if (!postInfo.title) return null;
   const { user } = postInfo;
-  console.log("PostDetailsPage ~ postInfo", postInfo);
   return (
     <PostDetailsPageStyles>
       <Layout>
@@ -143,10 +142,10 @@ const PostDetailsPage = () => {
               <h1 className="post-heading">{postInfo.title}</h1>
               <PostMeta></PostMeta>
               {/* Check if user role is ADMIN then can edit the post */}
-              {userInfo.role === userRole.ADMIN && (
+              {userInfo?.role === userRole.ADMIN && (
                 <Link
                   to={`/manage/update-post?id=${postInfo.id}`}
-                  className="mt-5 inline-block py-2 px-4 border border-gray-400 rounded-md text-sm"
+                  className="inline-block px-4 py-2 mt-5 text-sm border border-gray-400 rounded-md"
                 >
                   Edit post
                 </Link>
