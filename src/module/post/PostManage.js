@@ -2,6 +2,7 @@ import { ActionDelete, ActionEdit, ActionView } from "components/action";
 import { Button } from "components/button";
 import { LabelStatus } from "components/label";
 import { Table } from "components/table";
+import { useAuth } from "contexts/auth-context";
 import { db } from "firebase-app/firebase-config";
 import {
   collection,
@@ -19,7 +20,7 @@ import DashboardHeading from "module/dashboard/DashboardHeading";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { postStatus } from "utils/constants";
+import { postStatus, userRole } from "utils/constants";
 
 const POST_PER_PAGE = 10;
 
@@ -60,7 +61,12 @@ const PostManage = () => {
     }
     fetchData();
   }, [filter]);
+  const { userInfo } = useAuth();
   async function handleDeletePost(postId) {
+    if (userInfo?.role !== userRole.ADMIN) {
+      Swal.fire("Failded", "You have no right to do this action", "warning");
+      return;
+    }
     const docRef = doc(db, "posts", postId);
     Swal.fire({
       title: "Are you sure?",
